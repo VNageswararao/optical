@@ -1,0 +1,4 @@
+suppliername,invoiceno,taxtype,gst(y/n),itemname,qty,cp,mrp,sp,batchno,expirydate
+lens,12500,Exclusive,Y,MY PRODUCTS,1,22,22,22,111,10/01/2020
+,,Inclusive,N,gussi,2,11,11,111,222,10/01/2020
+,,Nontax,Y,DIO,3,22,22,22,212,10/01/2020

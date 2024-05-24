@@ -1,0 +1,1 @@
+$('.opticaltable-list').DataTable();

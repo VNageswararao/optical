@@ -1,0 +1,4 @@
+suppliername,invoiceno,taxtype,gst(y/n),itemname,qty,cp,mrp,sp,framemultipletype(y/n),frametype,framecolour,framesize,framemodel
+lens,12500,Exclusive,Y,MY PRODUCTS,1,22,22,22,N,Full Frame,Blue,40,123
+,,Inclusive,N,gussi,2,11,11,111,Y,"Full Frame,Shall Frame","Blue,Red","40,42","11,2"
+,,Nontax,Y,DIO,3,22,22,22,Y,"Full Frame,Shall Frame,Kids Frame","Blue,Red,Blue","40,42,43","11,1,1"
