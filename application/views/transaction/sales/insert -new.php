@@ -649,10 +649,9 @@ option:nth-child(n+11) {
                                 </div>
 
                                     <div class="row">
-                                    <div class="col-md-6">
+                                    <div class="col-md-5">
                                         <div class="form-group">
                                             <label for="lastname">Category: <span class="text-danger">*</span></label>
-											
 											<div class="form-check form-check-inline">
 												<input class="form-check-input" type="radio" name="Category" id="withcat" value="withcat">
 												<label class="form-check-label" for="withcat">With Cat</label>
@@ -660,11 +659,11 @@ option:nth-child(n+11) {
 											<div class="form-check form-check-inline">
 											  <input class="form-check-input" type="radio" name="Category" id="withoutcat" value="withoutcat">
 											  <label class="form-check-label" for="withoutcat">Without Cat
-											  &nbsp;&nbsp;&nbsp;&nbsp;
-											<span id="additem"></span>
+											  <span style="cursor:pointer;" class="notification-tag badge badge-danger float-right m-0" onclick="createlens();">Add Lens</span>
 											  </label>
+											  
+											  
 											</div>
-									
                                              <select class="form-control" name="category_id" id="category_id">
                                                 <option value="">Select Category Name</option>
                                                 <?php
@@ -680,7 +679,7 @@ option:nth-child(n+11) {
                                             </select>
                                         </div>
                                     </div>
-                                     <div class="col-md-3">
+                                     <div class="col-md-4">
                                         <div class="form-group">
                                             <label for="lastname">Supplier Name: <span class="text-danger">*</span></label>
                                           <select class="form-control select2" name="supplier_id" id="supplier_id">
@@ -707,15 +706,19 @@ option:nth-child(n+11) {
                                     </div>
                                     
                                 </div>
-							<div id="CagegoryTypeDiv"></div>
-							</div>
+					<div id="categoryDiv"></div>                              
+                                 <div class="card-footer ml-auto">
+                                    <button id="save" type="button" class="btn btn-success btn-min-width btn-glow mr-1 mb-1" onclick="savesalesentry();">Submit</button>
+                                    <button style="display: none;" id="update" type="button" class="btn btn-warning btn-min-width btn-glow mr-1 mb-1" onclick="updatesalesentry();">Update</button>
+                                     <button type="button" class="btn btn-info btn-min-width btn-glow mr-1 mb-1" onClick="window.location.reload();">Reset</button>
+                                     <t id="soc_db"></t>
+                                </div>
+                            </form>
+                             
+
+                                            </div>
                                             <!-- Tab 1 finsih -->
-                                            
-											
-											
-											
-											
-											<div class="tab-pane" id="tab2" aria-labelledby="base-tab2">
+                                            <div class="tab-pane" id="tab2" aria-labelledby="base-tab2">
                                                  <div class="card-body collapse show">
                                                 <div class="table-responsive">
 													 <table id="tableid" class="table table-striped table-bordered opticaltable-list" style="width: 100%;">
@@ -3314,46 +3317,23 @@ function loadautocomplete_framemodel_ajax(product,framemodel)
 		  $('#mpayment').hide();  
 		}
 	}
-	
-	$('input[type=radio][name=Category]').change(function() {
-		
-		 $.ajax({
-            url:'Sales/catTypeload',
-            type:'post',
-            data:{cattype:this.value},
-			success:function(data){
-			$('#CagegoryTypeDiv').empty(); 
-			$('#CagegoryTypeDiv').append(data); 
-	 }
-	 }); 
-    
-});
-$( "#category_id" ).on( "change", function() {
-    $('#additem').empty();
-  var button='<span style="cursor:pointer;" class="notification-tag badge badge-danger float-right m-0"  onclick="addMasterDataRow();"> Add '+$("#category_id :selected").text()+'</span>';
-  $('#additem').html(button);
-} );
-
-function addMasterDataRow(){
-	if($('#category_id').find(":selected").val()==''){
-		 Swal.fire({title:"Info!",text:"Please select Category Name",type:"info",confirmButtonClass:"btn btn-primary",buttonsStyling:!1});
-	}else{
-	var tableTrlength=$('#productdetails >tbody >tr').length;
-		 $.ajax({
-            url:'Sales/addMasterDataRow',
-            type:'post',
-            data:{trlength:tableTrlength,itemType:$("#category_id :selected").text()},
-			success:function(data){
-		$('#productdetails').append(data);
-	 }
-	 }); 
-	}
-	
-
-	
-}
-
-
+		$("input[name=Category]:radio").change(function () {
+			
+			if($(this).val()=='withcat'){
+			$.ajax({
+            type: "POST",
+            url: 'Sales/salesWithCategory',
+            dataType: "text",
+            data:{},
+            success: function(data){
+            $("#categoryDiv").append(data);
+			}
+			});
+			}else if($(this).val()=='withoutcat'){
+				$("#categoryDiv").empty();
+			}
+			
+        });
 </script>
 
           
