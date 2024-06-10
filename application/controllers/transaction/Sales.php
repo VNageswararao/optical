@@ -2068,7 +2068,7 @@ public function addMasterDataRow(){
 	$tr_html.='<td><input type="text" name="quantity_'.$trlength.'" id="quantity_'.$trlength.'" class="form-control grid_table" value="" onchange="calcTotalAmount('.$trlength.')"></td>';
     //$tr_html.='<td><input type="number" step="any" name="quantity_'.$trlength.'" id="quantity_'.$trlength.'" class="form-control grid_table" value="0" required="" onchange="calcTotalAmount('.$trlength.')"></td>';
     $tr_html.='<td class="mbl_view">
-                       <select name="gst_type_'.$trlength.'[]" id="gst_'.$trlength.'" class="form-control grid_table" onchange="gstCalc('.$trlength.')">
+                       <select name="gst_'.$trlength.'[]" id="gst_'.$trlength.'" class="form-control grid_table" onchange="gstCalc('.$trlength.')">
 						<option value="0">No</option>
                         <option value="1">Yes</option>
                        </select>
@@ -2095,10 +2095,22 @@ public function addMasterDataRow(){
 public function saveWithOutMasterData(){
 	$rows=$_GET['row'];
 	$data=$_REQUEST;
+	//echo "<pre>";print_r($data);die;
 	for($i=0;$i<$rows;$i++){
 		$record['itemtype']=$data["itemtype_$i"];
 		$record['itemname']=$data["itemname_$i"];
 		$record['itemcode']=$data["itemcode_$i"];
+		$record['description']=$data["desc_$i"];
+		$record['rate']=$data["rate_$i"];
+		$record['quantity']=$data["quantity_$i"];
+		$record['gst']=$data["gst_$i"][0];
+		$record['discount']=$data["discount_$i"];
+		$record['advance']=$data["advance_$i"];
+		$record['modeofpay']=$data["modeofpay_$i"];
+		$record['expdate']=$data["expdate_$i"];
+		$record['total']=$data["total_$i"];
+		$record['netamount']=$data["netamount_$i"];
+		$record['balance']=$data["balance_$i"];
 		$getresult=$this->Sales_models->saveWithOutMasterData($record);
 	}
 	
