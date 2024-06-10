@@ -2466,5 +2466,13 @@ $this->load->model('Sales_report_model');
            
           
   }
-
+  
+  
+ public function saveWithOutMasterData($data=array()){
+	  //echo"<pre>";print_r($data);die;
+		$this->db->insert('withoutdata',$data);
+		$insert_id=$this->db->insert_id();
+		//print_r($insert_id);die;
+  }
+       
 }

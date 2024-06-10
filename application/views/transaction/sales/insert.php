@@ -3420,9 +3420,10 @@ alert('hh');
 
 function saveData(){
 	var formData=$('#savesales_form').serialize();
+	var tableTrlength=$('#productdetails >tbody >tr').length;
 	console.log(formData);
 	 $.ajax({
-            url:'Sales/saveWithOutMasterData',
+            url:'Sales/saveWithOutMasterData?row='+tableTrlength,
             type:'post',
             data:formData,
 			success:function(data){
