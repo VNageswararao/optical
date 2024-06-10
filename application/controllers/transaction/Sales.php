@@ -53,7 +53,7 @@ class Sales extends CI_Controller {
 		}
 		
 		$data11 = array();
-		$fetchData = json_decode( json_encode($fetchData), true);
+		$fetchData = json_decode(json_encode($fetchData), true);
 		
 		//foreach ($row as $fetchData) {
 		foreach ($fetchData as $row) {
@@ -219,6 +219,11 @@ class Sales extends CI_Controller {
   {
       $this->Sales_models->print_bill($this->input->post('data_generatebill'),$this->session->userdata('office_id'));
   }
+  
+   public function salesWithCategory(){
+	 $this->load->view('transaction/sales/withcat',['content'=>$content]);
+  }
+  
   public function getstatuscon()
   {
       $this->form_validation->set_rules('status', 'Status', 'trim|required|min_length[1]|max_length[10]|numeric');
@@ -1908,6 +1913,10 @@ class Sales extends CI_Controller {
               exit;
       }
   }
+  
+  
+ 
+  
 
 public function sec_ad_payamount()
   {
@@ -2024,7 +2033,68 @@ public function sec_ad_payamount()
       }
   }
   
+public function catTypeload(){
+		  $office_id=$this->session->office_id;
+          $var_array=array($office_id);
+		  $catType=$_REQUEST['cattype'];
+          $data['category']=$this->Common_model->getcategory($var_array);
+          $data['getsupplier']=$this->Common_model->getsupplierdata($var_array);
+        //  $data['getcustomer']=$this->Common_model->getcustomerdatalimit($var_array);
+          $data['getcustomersales']=$this->Sales_models->getcustomersalesdata($var_array);
+          $data['getmodeofpay']=$this->Common_model->GetModeofpayData($var_array);
+          $data['getstaff']=$this->Common_model->GetStaffData($var_array);
+          $content=$this->load->view("transaction/sales/$catType",$data,true);
+		  echo $content;
+        //$this->load->view('includes/layout',['content'=>$content]);
+}
+
+public function addMasterDataRow(){
+	
+	$trlength=$_REQUEST['trlength'];
+	$itemType=$_REQUEST['itemType'];
+	$tr_html='<tr style="background:#ffedb8;">';
+	$tr_html.='<td>
+                        <a href="#" onclick="$(this).parent().parent().remove()"; class="input_column">
+                        <button class="btn btn-danger btnDelete btn-sm">
+                           <i class="la la-trash"></i>
+                        </button>
+                        </a>
+                   </td>';
+	$tr_html.='<td><input type="text" name="itemtype_'.$trlength.'" id="itemtype_'.$trlength.'" class="form-control grid_table" value="'.$itemType.'" readonly=""></td>';
+	$tr_html.='<td><input type="text" name="itemname_'.$trlength.'" id="itemname_'.$trlength.'" class="form-control grid_table" value=""></td>';
+    $tr_html.='<td><input type="text" name="itemcode_'.$trlength.'" id="itemcode_'.$trlength.'" class="form-control grid_table" value=""></td>';
+	$tr_html.='<td><input type="text" name="desc_'.$trlength.'" id="desc_'.$trlength.'" class="form-control grid_table" value=""></td>';
+    $tr_html.='<td><input type="text" name="rate_'.$trlength.'" id="rate_'.$trlength.'" class="form-control grid_table" value=""></td>';
+	$tr_html.='<td><input type="text" name="quantity_'.$trlength.'" id="quantity_'.$trlength.'" class="form-control grid_table" value="" onchange="calcTotalAmount('.$trlength.')"></td>';
+    //$tr_html.='<td><input type="number" step="any" name="quantity_'.$trlength.'" id="quantity_'.$trlength.'" class="form-control grid_table" value="0" required="" onchange="calcTotalAmount('.$trlength.')"></td>';
+    $tr_html.='<td class="mbl_view">
+                       <select name="gst_type[]" id="gst_'.$trlength.'" class="form-control grid_table" onchange="gstCalc('.$trlength.')">
+						<option value="0">No</option>
+                        <option value="1">Yes</option>
+                       </select>
+                   </td>';
+	 $tr_html.='<td><input name="discount_'.$trlength.'" id="discount_'.$trlength.'"  class="form-control grid_table" onchange="disCalc('.$trlength.')"></td>';
+	$tr_html.='<td><input type="text" name="advance_'.$trlength.'" id="advance_'.$trlength.'" class="form-control grid_table" value=""></td>';
+    $tr_html.='<td><input type="text" name="modeofpay_'.$trlength.'" id="modeofpay_'.$trlength.'" class="form-control grid_table" value=""></td>';
+    $tr_html.='<td><input type="date" name="expdate_'.$trlength.'" id="expdate_'.$trlength.'" class="form-control grid_table" value=""></td>';
+	$tr_html.='<td><input type="text" name="total_'.$trlength.'" id="total_'.$trlength.'" class="form-control grid_table" value=""></td>';
+    $tr_html.='<td><input type="text" name="netamount_'.$trlength.'" id="netamount_'.$trlength.'" class="form-control grid_table" value=""></td>';
+	$tr_html.='<td><input type="text" name="balance_'.$trlength.'" id="balance_'.$trlength.'" class="form-control grid_table" value=""></td>';
+ /*	$tr_html.='<td><input type="number" step="any" name="mrp_'.$trlength.'" id="mrp_'.$trlength.'" class="form-control grid_table" value="0" required="" autocomplete="off"></td>';
+	$tr_html.='<td><input type="text" step="any" name="totalamount_'.$trlength.'" id="totalamount_'.$trlength.'" class="form-control grid_table" value="0" required="" autocomplete="off"></td>';
+	$tr_html.='<td><input type="number" step="any" name="purchaseamount_'.$trlength.'" id="purchaseamount_'.$trlength.'" class="form-control grid_table" value="0" required="" autocomplete="off"></td>';*/
+	
+                /*   <td>
+                      <input name="totalamount_'.$trlength.'" id="totalamount_'.$trlength.'" class="form-control grid_table" value="0" readonly="">
+                   </td>'*/
+                   $tr_html.='</tr>';
+		echo $tr_html;		
+}
 
 
+public function saveWithOutMasterData(){
+	
+	echo"<pre>";print_r($_REQUEST);die;
+}
   
 }
