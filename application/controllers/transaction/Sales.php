@@ -2147,7 +2147,7 @@ public function loadPendingSalesList(){
 															//echo"<pre>";print_r($v);die;
 														
 						$html.="<tr>
-							<td>".$v['itemtype']."</td> 	<td>".$v['itemname']."</td> 	<td>".$v['itemcode']."</td> 	<td>".$v['description']."</td> 	<td>".$v['rate']."</td> 	<td>".$v['quantity']."</td> 	<td>".$v['gst']."</td> 	<td>".$v['discount']."</td> 	<td>".$v['advance']."</td> 	<td>".$v['modeofpay']."</td> 	<td>".$v['expdate']."</td> 	<td>".$v['total']."</td> 	<td>".$v['netamount']."</td> <td></td>	<td>".$v['balance']."</td> <td><button type='button' class='btn btn-info btn-info mr-1 mb-1'><i class='la la-print'></i></button></td>  <td><button type='button' class='btn btn-icon btn-warning mr-1 mb-1'><i class='la la-edit'></i></button></td> <td><button type='button' class='btn btn-icon btn-danger mr-1 mb-1'><i class='la la-trash'></i></button></td>
+							<td>".$v['itemtype']."</td> 	<td>".$v['itemname']."</td> 	<td>".$v['itemcode']."</td> 	<td>".$v['description']."</td> 	<td>".$v['rate']."</td> 	<td>".$v['quantity']."</td> 	<td>".$v['gst']."</td> 	<td>".$v['discount']."</td> 	<td>".$v['advance']."</td> 	<td>".$v['modeofpay']."</td> 	<td>".$v['expdate']."</td> 	<td>".$v['total']."</td> 	<td>".$v['netamount']."</td> <td></td>	<td>".$v['balance']."</td> <td><button type='button' class='btn btn-info btn-info mr-1 mb-1'><i class='la la-print'></i></button></td>  <td><button type='button' class='btn btn-icon btn-warning mr-1 mb-1'onclick='progressedit()'><i class='la la-edit'></i></button></td> <td><button type='button' class='btn btn-icon btn-danger mr-1 mb-1'><i class='la la-trash'></i></button></td>
 							</tr>";
 														}
 						
@@ -2179,4 +2179,10 @@ public function loadPendingSalesList(){
 				
 echo $html;				
 }  
+
+public function editPendingSaleslist(){
+	echo "test me"; die;
+}
+
+
 }

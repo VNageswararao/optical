@@ -3467,6 +3467,40 @@ function loadPendingSalesList(){
 	 });
 }
 
+function progressedit()
+{
+        $("#overlay").fadeIn(300);
+         $.ajax({
+            type: "POST",
+            url: '<?php echo base_url() ?>transaction/Sales/editPendingSaleslist',
+          
+            
+            success: function(data){
+                $("#overlay").fadeOut(300);
+               if(data.msg != ''){
+                 $('#edit_data').html(data.msg);
+                 $('#div_modallens').modal('show');
+               
+              } else if(data.error != ''){
+                Swal.fire({title:"Warning!",text:""+data.error+"",type:"warning",confirmButtonClass:"btn btn-primary",buttonsStyling:!1});
+              } else if(data.error_message) 
+              {
+                var error = data.error_message;
+                var err_str = '';
+                for (var key in error) {
+                  err_str += error[key] +'\n';
+                }
+                Swal.fire({title:"Info!",text:""+err_str+"",type:"info",confirmButtonClass:"btn btn-primary",buttonsStyling:!1});
+              }
+                
+            },
+            error: function (error) {
+                Swal.fire({title:"Info!",text:"Network Busy",type:"info",confirmButtonClass:"btn btn-primary",buttonsStyling:!1});
+                $("#overlay").fadeOut(300);  
+            }
+        }); 
+}
+
 </script>
 
           
