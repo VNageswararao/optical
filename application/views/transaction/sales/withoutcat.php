@@ -1,4 +1,5 @@
- <div class="row">
+
+								<div class="row">
                                     <div class="col-md-12">
                                      <div class="form-group">
                                         <div class="table-responsive">
@@ -34,5 +35,5 @@
 
                     <button type="button" id="mclose" class="btn btn-danger btn-sm stmlns" data-dismiss="modal">Close</button>
                 </div>
-					
-								  
+		
+			

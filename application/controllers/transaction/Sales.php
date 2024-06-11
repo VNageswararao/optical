@@ -2095,9 +2095,8 @@ public function addMasterDataRow(){
 public function saveWithOutMasterData(){
 	$rows=$_GET['row'];
 	$data=$_REQUEST;
-	//echo "<pre>";print_r($data);die;
 	for($i=0;$i<$rows;$i++){
-		$record['itemtype']=$data["itemtype_$i"];
+		$record['itemtype']=$data["itemtype_".$i];
 		$record['itemname']=$data["itemname_$i"];
 		$record['itemcode']=$data["itemcode_$i"];
 		$record['description']=$data["desc_$i"];
@@ -2112,9 +2111,72 @@ public function saveWithOutMasterData(){
 		$record['netamount']=$data["netamount_$i"];
 		$record['balance']=$data["balance_$i"];
 		$getresult=$this->Sales_models->saveWithOutMasterData($record);
+
 	}
 	
 
 }
-  
+public function loadPendingSalesList(){
+	$getresult=$this->Sales_models->loadPendingSalesList();
+	//echo"<pre>";print_r($getresult);die;
+	$html='';
+	$html.="<table class='table table-striped table-bordered opticaltable-list' style='width: 100%;'>
+                                                       <thead>
+														  <tr>	
+														<th>Item Type</th>
+														<th>Item Name</th>
+														<th>Item Code</th>
+														<th> Description </th>
+														<th>Rate</th>
+														<th>Qty</th>
+														<th>GST</th>
+														<th>Discount</th>
+														<th>ADV</th>
+														<th>Mode of pay</th>
+														<th>Exp Delivery</th> 
+														<th>Total Amount</th>
+														<th>Net Amount</th>
+														<th>Balance</th>
+														<th>Status</th>
+														<th>Print</th>
+														<th>Edit</th>
+														<th>Delete</th>
+														  </tr>
+														</thead>";
+														foreach($getresult as $k=>$v){
+															//echo"<pre>";print_r($v);die;
+														
+						$html.="<tr>
+							<td>".$v['itemtype']."</td> 	<td>".$v['itemname']."</td> 	<td>".$v['itemcode']."</td> 	<td>".$v['description']."</td> 	<td>".$v['rate']."</td> 	<td>".$v['quantity']."</td> 	<td>".$v['gst']."</td> 	<td>".$v['discount']."</td> 	<td>".$v['advance']."</td> 	<td>".$v['modeofpay']."</td> 	<td>".$v['expdate']."</td> 	<td>".$v['total']."</td> 	<td>".$v['netamount']."</td> <td></td>	<td>".$v['balance']."</td> <td><button type='button' class='btn btn-info btn-info mr-1 mb-1'><i class='la la-print'></i></button></td>  <td><button type='button' class='btn btn-icon btn-warning mr-1 mb-1'><i class='la la-edit'></i></button></td> <td><button type='button' class='btn btn-icon btn-danger mr-1 mb-1'><i class='la la-trash'></i></button></td>
+							</tr>";
+														}
+						
+						
+						$html.="<tfoot>
+															<tr>
+															
+														<th>Item Type</th>
+														<th>Item Name</th>
+														<th>Item Code</th>
+														<th> Description </th>
+														<th>Rate</th>
+														<th>Qty</th>
+														<th>GST</th>
+														<th>Discount</th>
+														<th>ADV</th>
+														<th>Mode of pay</th>
+														<th>Exp Delivery</th> 
+														<th>Total Amount</th>
+														<th>Net Amount</th>
+														<th>Balance</th>
+														<th>Status</th>
+														<th>Print</th>
+														<th>Edit</th>
+														<th>Delete</th>
+															</tr>
+														</tfoot>
+													</table>";
+				
+echo $html;				
+}  
 }

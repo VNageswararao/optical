@@ -2469,10 +2469,15 @@ $this->load->model('Sales_report_model');
   
   
  public function saveWithOutMasterData($data=array()){
-	 // echo"<pre>";print_r($data);die;
 		$this->db->insert('withoutdata',$data);
 		$insert_id=$this->db->insert_id();
 		//print_r($insert_id);die;
   }
-       
+   
+public function loadPendingSalesList(){
+	  $sql = "select * from withoutdata";
+      $result_row=$this->db->query($sql); 
+      $res= $result_row->result_array ();
+      return $res;
+}   
 }

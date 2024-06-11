@@ -47,6 +47,9 @@ option:nth-child(n+11) {
 											<li class="nav-item">
                                                 <a class="nav-link" id="base-tab5" data-toggle="tab" aria-controls="tab5" href="#tab5" aria-expanded="false">Emergency Order</a>
                                             </li>
+											<li class="nav-item">
+                                                <a class="nav-link" id="base-tab6"  onclick="loadPendingSalesList()" data-toggle="tab" aria-controls="tab6" href="#tab6" aria-expanded="false">Progress</a>
+                                            </li>
                                         </ul>
             <form id="orderform_form" action="#" method="post"> 
         <div id="orderform_form_modal" class="modal fade" role="dialog">
@@ -888,6 +891,15 @@ option:nth-child(n+11) {
 												</div>
 												</div>
                                             </div>
+											
+											<div class="tab-pane" id="tab6" aria-labelledby="base-tab6">
+                                                <div class="card-body collapse show">
+                                                <div class="table-responsive">
+													<div id="PendingSalesList"></div>
+												</div>
+												</div>
+                                            </div>
+											
                                             <!-- Tab 2 finsh -->
                                               
 
@@ -3323,7 +3335,7 @@ function loadautocomplete_framemodel_ajax(product,framemodel)
             data:{cattype:this.value},
 			success:function(data){
 			$('#CagegoryTypeDiv').empty(); 
-			$('#CagegoryTypeDiv').append(data); 
+			$('#CagegoryTypeDiv').html(data); 
 	 }
 	 }); 
     
@@ -3419,6 +3431,14 @@ alert('hh');
 }
 
 function saveData(){
+	//alert($("#itemname").val());
+	/*if($("#itemname").val()=='' || $("#itemcode").val()=='' || $("#rate").val()=='' || $("#quantity").val()=='') {
+           Swal.fire({title:"Info!",text:"Please Enter  All Mandatory fields !",type:"info",confirmButtonClass:"btn btn-primary btn-sm",buttonsStyling:!1})
+           return false;
+        }
+		else {
+			alert("record updated succesfully");
+		}*/
 	var formData=$('#savesales_form').serialize();
 	var tableTrlength=$('#productdetails >tbody >tr').length;
 	console.log(formData);
@@ -3433,6 +3453,19 @@ function saveData(){
 	 });
 }
 
+function loadPendingSalesList(){
+	//$('#progresstable').html(data)
+	$.ajax({
+            url:'Sales/loadPendingSalesList',
+            type:'post',
+            data:{},
+			success:function(data){
+			$('#PendingSalesList').empty();	
+		$('#PendingSalesList').html(data)
+		return false;
+	 }
+	 });
+}
 
 </script>
 
