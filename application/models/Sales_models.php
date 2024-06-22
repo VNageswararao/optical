@@ -2480,4 +2480,9 @@ public function loadPendingSalesList(){
       $res= $result_row->result_array ();
       return $res;
 }   
+public function saveProgressData($data=array()){
+		$this->db->insert('progress_entry',$data);
+		$insert_id=$this->db->insert_id();
+		//print_r($insert_id);die;
+  }
 }

@@ -1380,7 +1380,7 @@ class Sales extends CI_Controller {
                          <td>'.$code.'</td>
                          <td><b>'.$name.'</b><input type="hidden" value="'.$name.'" name="product[]"><input type="hidden" name="original_selling_price[]" id="original_selling_price_'.$sl.'" value="'.$data['orginal_rate'].'"></td>
                          '.$stockin.'
-                         <td><input type="text" name="selling_price[]" id="selling_price_'.$sl.'" class="form-control grid_table" value="'.$data['rate'].'" onKeyUp="calcrow('.$sl.')" onkeypress="isFloat(event)" onkeydown="changefocus(event,$(this))" ></td>
+                         <td><input type="text" name="selling_price[]" id="selling_price_'.$sl.'" class="form-control grid_table" value="'.$data['rate'].'" onKeyUp="calcrow('.$sl.')"  onkeydown="changefocus(event,$(this))" ></td>
                         <td><input type="number" step="any" name="quantity[]" id="quantity_'.$sl.'" class="form-control grid_table" value="'.$data['quantity'].'"  onKeyUp="calcrow('.$sl.')"  onkeydown="changefocus(event,$(this))" onkeypress="return isFloat(event)"  required  autocomplete="off"></td>
                           '.$itemclassfn.'
                           <td class="mbl_view">
@@ -1390,7 +1390,7 @@ class Sales extends CI_Controller {
                            </select>
                           </td>
                            <td class="mbl_view">
-                      <input type="text" name="discount_input[]" value="" class="form-control grid_table" onKeyUp="calcrow('.$sl.')" id="discount_input_'.$sl.'" value="'.$data['discount_input'].'" onkeypress="isFloat(event)" onkeydown="changefocus(event,$(this))">
+                      <input type="text" name="discount_input[]" value="" class="form-control grid_table" onKeyUp="calcrow('.$sl.')" id="discount_input_'.$sl.'" value="'.$data['discount_input'].'"  onkeydown="changefocus(event,$(this))">
                       <input type="hidden" name="discount_amount[]" value="'.$data['discount_value'].'" id="discount_amount_'.$sl.'"></td>
                       <td>
                         <input name="amount[]" id="amount_'.$sl.'" class="form-control grid_table" value="'.$data['total_amount'].'" readonly="">
@@ -1449,7 +1449,7 @@ class Sales extends CI_Controller {
                          <td>'.$code.'</td>
                          <td><b>'.$name.'</b><input type="hidden" value="'.$name.'" name="product[]"><input type="hidden" name="original_selling_price[]" id="original_selling_price_'.$sl.'" value="'.$data['orginal_rate'].'"></td>
                          '.$stockin.'
-                         <td><input type="text" name="selling_price[]" id="selling_price_'.$sl.'" class="form-control grid_table" value="'.$data['rate'].'" onKeyUp="calcrow('.$sl.')" onkeypress="isFloat(event)" onkeydown="changefocus(event,$(this))" ></td>
+                         <td><input type="text" name="selling_price[]" id="selling_price_'.$sl.'" class="form-control grid_table" value="'.$data['rate'].'" onKeyUp="calcrow('.$sl.')"  onkeydown="changefocus(event,$(this))" ></td>
                         <td><input type="number" step="any" name="quantity[]" id="quantity_'.$sl.'" class="form-control grid_table" value="'.$data['quantity'].'"  onKeyUp="calcrow('.$sl.')"  onkeydown="changefocus(event,$(this))" onkeypress="return isFloat(event)"  required  autocomplete="off"></td>
                           '.$itemclassfn.'
                           <td class="mbl_view">
@@ -1459,7 +1459,7 @@ class Sales extends CI_Controller {
                            </select>
                           </td>
                            <td class="mbl_view">
-                      <input type="text" name="discount_input[]" value="" class="form-control grid_table" onKeyUp="calcrow('.$sl.')" id="discount_input_'.$sl.'" value="'.$data['discount_input'].'" onkeypress="isFloat(event)" onkeydown="changefocus(event,$(this))">
+                      <input type="text" name="discount_input[]" value="" class="form-control grid_table" onKeyUp="calcrow('.$sl.')" id="discount_input_'.$sl.'" value="'.$data['discount_input'].'"  onkeydown="changefocus(event,$(this))">
                       <input type="hidden" name="discount_amount[]" value="'.$data['discount_value'].'" id="discount_amount_'.$sl.'"></td>
                       <td>
                         <input name="amount[]" id="amount_'.$sl.'" class="form-control grid_table" value="'.$data['total_amount'].'" readonly="">
@@ -2116,6 +2116,131 @@ public function saveWithOutMasterData(){
 	
 
 }
+
+public function addWithoutTableRow(){
+	$index=$_REQUEST['index'];
+	 $itemtype=$_REQUEST['itemtype'];
+	 if($itemtype=='LENS'){
+		 $color='#ffedb8;';
+	 }else if($itemtype=='FRAME'){
+		$color='#a4ffde;'; 
+	 }else if($itemtype=='READING GLASS'){
+		$color='#ffedb8;'; 
+	 }else if($itemtype=='CONTACTLENS'){
+		$color='#ffedb8;'; 
+	 }else if($itemtype=='SUNGLASS'){
+		$color='#ffedb8;'; 
+	 }else if($itemtype=='SERVICE'){
+		$color='#ffedb8;'; 
+	 }else if($itemtype=='ACLUDAR'){
+		$color='#ffedb8;'; 
+	 }else{
+		$color='#a4ffde;'; 
+	 }
+	/*$html.='<tr style="background:'.$color.';">
+                  <td>
+                        <a href="#" onclick="$(this).parent().parent().remove();calcnet();checkgridcount();" class="input_column">
+                        <button class="btn btn-danger btnDelete btn-sm">
+                           <i class="la la-trash"></i>
+                        </button>
+                        </a>
+                   </td>
+                   <td><input type="text" name="itemtype_'.$index.'" id="itemtype_'.$index.'" class="form-control grid_table" value="'.$itemtype.'" onkeyup="calcrow('.$index.')"  onkeydown="changefocus(event,$(this))"></td>
+                   <td><input type="text" name="product[]" id="selling_price_'.$index.'" class="form-control grid_table" value="" onkeyup="calcrow('.$index.')"  onkeydown="changefocus(event,$(this))"></td>
+                   <td></td>
+                   <td><input type="text" name="selling_price[]" id="selling_price_'.$index.'" class="form-control grid_table" value="200" onkeyup="calcrow('.$index.')"  onkeydown="changefocus(event,$(this))"></td>
+                   <td><input type="number" step="any" name="quantity[]" id="quantity_'.$index.'" class="form-control grid_table" value="0" onkeyup="calcrow('.$index.')" onkeydown="changefocus(event,$(this))" required="" autocomplete="off"></td>
+                   <td></td>
+                   <td></td>
+                   <td></td>
+                   <td></td>
+                   <td>NONE</td>
+                   <td>NONE1</td>
+                   <td class="mbl_view">
+                       <select name="discount_type[]" id="discount_type_'.$index.'" class="form-control grid_table" onchange="calcrow('.$index.')">
+                         <option value="0">Amount</option>
+                         <option value="1">Percentage</option>
+                       </select>
+                   </td>
+                   <td class="mbl_view">
+                      <input type="text" name="discount_input[]" value="" class="form-control grid_table" onkeyup="calcrow('.$index.')" id="discount_input_'.$index.'"  onkeydown="changefocus(event,$(this))">
+                      <input type="hidden" name="discount_amount[]" value="0" id="discount_amount_'.$index.'"></td>
+                   
+                   <td>
+                      <input name="amount[]" id="amount_'.$index.'" class="form-control grid_table" value="0" readonly="">
+                   </td>
+                   <td style="display: none;" class="mbl_view">
+                     <select name="tax_type[]" id="tax_type_'.$index.'" style="font-size:12px" class="form-control grid_table disabled_select">
+                       <option value="0">Non Tax</option>
+                       <option value="1">Inclusive</option>
+                       <option value="2">Exclusive</option>
+                     </select>
+                   </td>
+                   <td style="display: none;" class="mbl_view"><input type="text" class="form-control grid_table" name="gst[]" id="gst_'.$index.'" readonly="" value=""></td>
+                   <td style="display: none;"><input type="hidden" class="form-control grid_table" name="cgst[]" id="cgst_'.$index.'" readonly="" value="6"></td>
+                   <td style="display: none;"><input type="hidden" class="form-control grid_table" name="sgst[]" id="sgst_'.$index.'" readonly="" value="6"></td>
+                   <td style="display:none" class="mbl_view">
+                     <input type="hidden" name="stock_id[]" id="stock_id_'.$index.'" value="100">
+                     <input type="hidden" name="product_id[]" id="product_id_'.$index.'" value="0.0">
+                     <input type="hidden" name="tax_amount[]" id="tax_amount_'.$index.'" value="0.0">
+                     <input type="hidden" name="product_type[]" id="product_type_'.$index.'" value="0.0">
+                   </td>
+                </tr>';*/
+				$html.='<tr style="background:'.$color.';">';
+                  $html.='<td>
+                        <a href="#" onclick="$(this).parent().parent().remove();calcnet();checkgridcount();" class="input_column">
+                        <button class="btn btn-danger btnDelete btn-sm">
+                           <i class="la la-trash"></i>
+                        </button>
+                        </a>
+                   </td>';
+    $html.='<td>10</td>';
+    $html.='<td>
+	<input type="text" class="form-control grid_table" value="" name="product[]">
+	<input type="hidden" name="original_selling_price[]" id="original_selling_price_'.$index.'" value="0">
+	</td>
+    $html.=<td></td>';
+    $html.='<td><input type="text" name="selling_price[]" id="selling_price_'.$index.'" class="form-control grid_table" value="0" onkeyup="calcrow('.$index.')" onkeydown="changefocus(event,$(this))"></td>';
+    $html.='<td><input type="number" step="any" name="quantity[]" id="quantity_'.$index.'" class="form-control grid_table" value="0" onkeyup="calcrow('.$index.')" onkeydown="changefocus(event,$(this))"  required="" autocomplete="off"></td>';
+    $html.='<td></td>';
+    $html.='<td></td>';
+    $html.='<td></td>';
+    $html.='<td></td>';
+    $html.='<td>NONE</td>';
+    $html.='<td>NONE1</td>';
+    $html.='<td class="mbl_view">
+                       <select name="discount_type[]" id="discount_type_'.$index.'" class="form-control grid_table" onchange="calcrow('.$index.')">
+                         <option value="0">Amount</option>
+                         <option value="1">Percentage</option>
+                       </select>
+                   </td>';
+    $html.='<td class="mbl_view">
+                      <input type="text" name="discount_input[]" value="" class="form-control grid_table" onkeyup="calcrow('.$index.')" id="discount_input_'.$index.'"  onkeydown="changefocus(event,$(this))">
+                      <input type="hidden" name="discount_amount[]" value="0" id="discount_amount_'.$index.'"></td>';
+                   
+    $html.='<td>
+                      <input name="amount[]" id="amount_'.$index.'" class="form-control grid_table" value="0" readonly="">
+                   </td>';
+    $html.='<td style="display: none;" class="mbl_view">
+                     <select name="tax_type[]" id="tax_type_'.$index.'" style="font-size:12px" class="form-control grid_table disabled_select">
+                       <option value="0">Non Tax</option>
+                       <option value="1">Inclusive</option>
+                       <option value="2">Exclusive</option>
+                     </select>
+                   </td>';
+    $html.='<td style="display: none;" class="mbl_view"><input type="text" class="form-control grid_table" name="gst" id="gst_'.$index.'" readonly="" value="12"></td>';
+    $html.='<td style="display: none;"><input type="hidden" class="form-control grid_table" name="cgst" id="cgst_'.$index.'" readonly="" value="0.00"></td>';
+    $html.='<td style="display: none;"><input type="hidden" class="form-control grid_table" name="sgst" id="sgst_'.$index.'" readonly="" value="0.00"></td>';
+    $html.='<td style="display:none" class="mbl_view">
+                     <input type="hidden" name="stock_id" id="stock_id_'.$index.'" value="14">
+                     <input type="hidden" name="product_id" id="product_id_'.$index.'" value="14">
+                     <input type="hidden" name="tax_amount" id="tax_amount_'.$index.'" value="0">
+                     <input type="hidden" name="product_type" id="product_type_'.$index.'" value="1">
+                   </td>';
+    $html.='</tr>';
+				echo $html;
+	
+}
 public function loadPendingSalesList(){
 	$getresult=$this->Sales_models->loadPendingSalesList();
 	//echo"<pre>";print_r($getresult);die;
@@ -2181,8 +2306,194 @@ echo $html;
 }  
 
 public function editPendingSaleslist(){
-	echo "test me"; die;
+	
+		$html.='<form id="edit_data_form" action="#" method="post"> 
+							 <div id="div_edit_data" class="modal fade show" role="dialog" aria-modal="true" style="display: block;">
+							        <div class="modal-dialog modal-xl">
+							        <!-- Modal content-->
+							            <div class="modal-content">
+							                <div class="modal-header">
+							                    <h4 class="modal-title">Edit Data</h4>
+							                    <button type="button" class="close" data-dismiss="modal">×</button>
+							                </div>
+							                <div class="modal-body">
+										
+										 <div class="col-lg-12 col-md-12" >
+							                         
+							                                 
+							       <div class="row">
+                                    <div class="col-md-2">
+                                        <div class="form-group">
+                                            <label for="lastname">Code: </label>
+                                            <input type="text" class="form-control" name="code" placeholder="Code" id="code" required >
+                                        </div>
+                                    </div>
+                                     <div class="col-md-2">
+                                        <div class="form-group">
+                                            <label for="lastname">Item Type: <span class="text-danger">*</span></label>
+                                            <input type="text" class="form-control" name="item_type_id" id="item_type_id">
+                                        </div>
+                                    </div>
+                                     <div class="col-md-2">
+                                        <div class="form-group">
+                                            <label for="lastname">Coating: <span class="text-danger">*</span></label>
+                                            <input type="text" class="form-control" name="lens_coating_id" id="lens_coating_id">
+                                               
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <div class="form-group">
+                                            <label for="lastname">Item Name: <span class="text-danger">*</span></label>
+                                            <input type="text" class="form-control" placeholder="Item Name" id="itemname" name="itemname" required>
+                                        </div>
+                                    </div>
+                                
+                               
+   
+                                     <div class="col-md-2">
+                                        <div class="form-group">
+                                            <label for="lastname">Purchase Date: <span class="text-danger">*</span></label>
+                                            <input type="date" class="form-control" placeholder="Purchase Date" id="purchase_date" name="purchase_date" pattern="\d{4}-\d{2}-\d{2}" >
+                                        </div>
+									</div>
+                                     <div class="col-md-2">
+                                        <div class="form-group">
+                                            <label for="lastname">Delivery Date: <span class="text-danger">*</span></label>
+                                            <input type="date" class="form-control" placeholder="Delivery Date" id="delivery_date" name="delivery_date" pattern="\d{4}-\d{2}-\d{2}" >
+                                        </div>
+                                    </div>
+								</div>
+								<div class="row">
+                                     <div class="col-md-2">
+                                        <div class="form-group">
+                                            <label for="lastname">Rate: <span class="text-danger">*</span></label>
+                                            <input type="text" class="form-control" placeholder="Rate" id="rate" name="rate" required>
+                                        </div>
+                                    </div>
+									<div class="col-md-2">
+                                       <div class="form-group">
+                                            <label for="quantity"> Qty: <span class="text-danger">*</span></label>
+                                            <input type="text" class="form-control" placeholder="Quantity" id="quantity" name="quantity" required>
+                                        </div>
+                                    </div>
+									<div class="col-md-2">
+                                       <div class="form-group">
+                                            <label for="discount"> Discount: <span class="text-danger">*</span></label>
+                                            <input type="text" class="form-control" placeholder="discount" id="discount" name="discount" required>
+                                        </div>
+                                    </div>
+                                      <div class="col-md-2">
+                                        <div class="form-group">
+                                            <label for="firstname">Gst: <span class="text-danger">*</span></label>
+                                           <select class="form-control" name="gst_type" id="gst_type" onchange="changeVat($(this).val())">
+                                               <option value="0">NonTax</option>
+                                               <option value="1">Inclusive</option>
+                                               <option value="2">Exclusive</option>
+                                           </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="row col-md-6" id="tax_gstt" style="display: none;">
+                                     <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label for="firstname">Tax: <span class="text-danger">*</span></label>
+                                           <select class="form-control" name="tax" id="taxt" onchange="changeTaxvall($(this).val())">
+                                            <option value="">Select Tax</option>
+                                              '.$taxx.'
+                                           </select>
+                                        </div>
+                                    </div>
+                                     <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label for="firstname">CGST%: </label>
+                                           <input type="text" readonly name="cgst" id="cgstt" class="form-control" placeholder="CGST">
+                                        </div>
+                                    </div>
+                                     <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label for="firstname">SGST%: </label>
+                                           <input type="text" readonly name="sgst" id="sgstt" class="form-control" placeholder="SGST">
+                                        </div>
+                                    </div>
+                                </div>
+                                     <div class="col-md-2">
+                                        <div class="form-group">
+                                            <label for="lastname">Supplier Name: <span class="text-danger">*</span></label>
+                                          <input type="text" class="form-control select2" name="supplier_name" id="supplier_name">
+										</div>
+                                    </div>
+									<div class="col-md-2">
+                                       <div class="form-group">
+                                            <label for="lastname">Purchase Amount: <span class="text-danger">*</span></label>
+                                            <input type="text" class="form-control" placeholder="Purchase Amount" id="purchaseamount" name="purchaseamount" required>
+                                        </div>
+                                    </div>
+									<div class="col-md-2">
+                                       <div class="form-group">
+                                            <label for="total_amount">Total Amount: <span class="text-danger">*</span></label>
+                                            <input type="text" class="form-control" placeholder="Total Amount" id="total_amount" name="total_amount" required>
+                                        </div>
+                                    </div>
+									<div class="col-md-2">
+                                       <div class="form-group">
+                                            <label for="net_amount">Net Amount: <span class="text-danger">*</span></label>
+                                            <input type="text" class="form-control" placeholder="Net Amount" id="net_amount" name="net_amount" required>
+                                        </div>
+                                    </div>
+									<div class="col-md-2">
+                                       <div class="form-group">
+                                            <label for="invoice_no">Invoice No: <span class="text-danger">*</span></label>
+                                            <input type="text" class="form-control" placeholder="Invoice No" id="invoice_no" name="invoice_no" required>
+                                        </div>
+                                    </div>
+                                   
+                                </div>
+                                <div class="row">
+                                   <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="symptoms">Description:</label>
+                                            <textarea cols="3" rows="3" id="description" name="description" class="form-control" placeholder="Description"></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+								
+											</div>
+							                <div class="modal-footer">
+		<button id="save" class="btn btn-primary btn-sm" type="button" onclick="ProgressSaveEntryData();"><i class="fas fa-plus-square"></i>Save</button>
+			<button type="button" id="mclose" class="btn btn-danger btn-sm" data-dismiss="modal">Close</button>
+							                </div>
+							            </div>
+							        </div>
+							    </div>
+							</form>';
+							
+						echo $html; 
+	
 }
 
+
+public function progressSaveEntryData(){
+
+	$data=$_REQUEST;
+		$record['code']=$data["code"];
+		$record['itemtype']=$data["item_type_id"];
+		$record['coating']=$data["lens_coating_id"];
+		$record['itemname']=$data["itemname"];
+		$record['purchasedate']=$data["purchase_date"];
+		$record['deliverydate']=$data["delivery_date"];
+		$record['rate']=$data["rate"];
+		$record['quantity']=$data["quantity"];
+		$record['discount']=$data["discount"];
+		$record['gst']=$data["gst_type"][0];
+		$record['suppliername']=$data["supplier_name"];
+		$record['purchaseamount']=$data["purchaseamount"];
+		$record['totalamount']=$data["total_amount"];
+		$record['netamount']=$data["net_amount"];
+		$record['invoiceno']=$data["invoice_no"];
+		$record['description']=$data["description"];
+		$getresult=$this->Sales_models->saveProgressData($record);
+	
+
+}
 
 }

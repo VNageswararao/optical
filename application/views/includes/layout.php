@@ -44,13 +44,15 @@ $path=base_url('template1/modern-admin/');
     <link rel="stylesheet" type="text/css" href="<?=$path?>app-assets/fonts/simple-line-icons/style.min.css">
     <link rel="stylesheet" type="text/css" href="<?=$path?>app-assets/css/core/colors/palette-switch.min.css">
     <link rel="stylesheet" type="text/css" href="<?=$path?>app-assets/css/plugins/forms/selectivity/selectivity.min.css">
+	
    
     <!-- END: Page CSS-->
 
     <!-- BEGIN: Custom CSS-->
     <link rel="stylesheet" type="text/css" href="<?=$path?>assets/css/style.css">
-    <!-- END: Custom CSS-->
 
+    <!-- END: Custom CSS-->
+	
 
   <script src="<?=$path?>app-assets/vendors/js/vendors.min.js"></script>
    <script src="<?=$path?>app-assets/vendors/js/forms/select/select2.full.min.js"></script>
@@ -67,7 +69,7 @@ $path=base_url('template1/modern-admin/');
     <!-- BEGIN: Page JS-->
     
     <script src="<?=$path?>app-assets/js/scripts/pages/hospital-patients-list.js"></script>
-    
+	
     
 
     

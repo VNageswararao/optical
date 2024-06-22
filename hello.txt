@@ -1,1 +1,59 @@
-hello world hari Krishna nageswar rao
+c program to print  5 table 
+
+	a=10	int a=10;	
+	b=20	int b=20;
+	c=a+b	int c=a+b;
+	
+#include<stdio.h>
+int main(){
+	int a;	
+	int b;
+	scanf("%d",&a);
+	scanf("%d",&b);
+	int c=a+b;
+	printf("%d",c);
+}
+
+printf("%s",c);
+
+java 
+
+import java.util.*;
+class a{
+public static void main(String args[]){
+Scanner sc = new Scanner(System.in);
+	int a =sc.nextInt();
+	int b= sc.nextInt();
+	int c=a+b;
+	System.out.println(c);
+}
+}
+
+python
+
+a=int(input())
+b=int(input())
+c=a+b
+print(c)
+
+
+steps 
+
+first take a variable n
+next for loop i=0;i<n;i++
+then print the table 
+5*1=5	
+	
+5*2=10
+5*3=15
+
+
+
+
+
+
+
+           java 
+	import java.util.Scanner;
+       Scanner sc = new Scanner(System.in);
+		
